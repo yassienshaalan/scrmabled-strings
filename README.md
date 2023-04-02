@@ -13,7 +13,7 @@ Treating each line of the input file as one search string. For example
 #x: y per input file string, where x is the line number (starting from 1) and y is the number of words from the dictionary that appear (in their original or scrambled form) as substrings of the given string.
 E.g. Case #1: 2
 
-## Explanation and Time and space complexity of the solution
+## Code Explanation and Time and space complexity of the solution
 ```
 Please refer to explantion.txt 
 ```
