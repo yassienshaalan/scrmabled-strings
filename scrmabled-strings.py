@@ -187,14 +187,7 @@ class ScrmabledStringsSolver:
             logging.error(f"Could not find file '{file_path}'.")
             exit(1)
         return lines
-    
-    def solve_main(self):
-        """
-        Main function to count matches for each line in input file.
-        Then print outcome and write it to file with time stamped name under output directory and write log also to logs directory
-        Read input file and return a list of lines.
-        """
-    
+    def solve(self,dictionary,lines):
         # Create a timestamp for the log and output files.
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         
@@ -203,18 +196,14 @@ class ScrmabledStringsSolver:
             os.makedirs('logs')
         logging.basicConfig(filename=f'logs/output_v_{self.version}_{timestamp}.log', level=logging.DEBUG)
 
-        # Read the dictionary and input files.
-        dictionary = self.read_dictionary_file(self.dictionary_file)
-        lines = self.read_input_file(self.input_file)
-
         # Create an output directory if it doesn't exist, and create
-
+        
         if not os.path.exists('output'):
             os.makedirs('output')
 
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
         output_file_name = f"output/output_v_{self.version}_{timestamp}.txt"
+        counts = []
+        
         with open(output_file_name, 'w') as output_file:
             # Count the number of matches for the line in the dictionary using is_substring function
             for i, line in enumerate(lines, start=1):
@@ -223,8 +212,22 @@ class ScrmabledStringsSolver:
                 # Write the line number and match count to the output file
                 output_file.write(f"Case #{i}: {count}\n")
                 print(f"Case #{i}: {count}")
+                counts.append(count)
                 # Log the line number and match count as an info message
                 logging.info(f"Processed Case #{i}. Match count: {count}")
+        return counts
+
+    def solve_main(self):
+        """
+        Main function to count matches for each line in input file.
+        Then print outcome and write it to file with time stamped name under output directory and write log also to logs directory
+        Read input file and return a list of lines.
+        """
+        # Read the dictionary and input files.
+        dictionary = self.read_dictionary_file(self.dictionary_file)
+        lines = self.read_input_file(self.input_file)
+
+        return self.solve(dictionary,lines)
 
     def solve_api(self,dict_file,input_file):
         """
@@ -245,37 +248,9 @@ class ScrmabledStringsSolver:
         lines = [line.rstrip().decode("utf-8") for line in input_file]
         # Keep only Non-blank lines in a list
         lines = list(line for line in lines if line) 
-        
-        # Create a timestamp for the log and output files.
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        
-        # Create a logs directory if it doesn't exist, and set up logging to a file.
-        if not os.path.exists('logs'):
-            os.makedirs('logs')
-        logging.basicConfig(filename=f'logs/output_v_{self.version}_{timestamp}.log', level=logging.DEBUG)
 
-        # Create an output directory if it doesn't exist, and create
+        return self.solve(dictionary,lines)
         
-        if not os.path.exists('output'):
-            os.makedirs('output')
-
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-        output_file_name = f"output/output_v_{self.version}_{timestamp}.txt"
-        counts = []
-        
-        with open(output_file_name, 'w') as output_file:
-            # Count the number of matches for the line in the dictionary using is_substring function
-            for i, line in enumerate(lines, start=1):
-                # Count the number of matches for the line in the dictionary using is_substring function
-                count = self.count_words(dictionary, line)
-                # Write the line number and match count to the output file
-                output_file.write(f"Case #{i}: {count}\n")
-                print(f"Case #{i}: {count}")
-                counts.append(count)
-                # Log the line number and match count as an info message
-                logging.info(f"Processed Case #{i}. Match count: {count}")
-        return counts
 
 def main(dictionary_file: str, input_file: str) -> None:
     """
