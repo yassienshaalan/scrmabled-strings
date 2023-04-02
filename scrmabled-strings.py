@@ -194,7 +194,7 @@ class ScrmabledStringsSolver:
         # Create a logs directory if it doesn't exist, and set up logging to a file.
         if not os.path.exists('logs'):
             os.makedirs('logs')
-        logging.basicConfig(filename=f'logs/output_v_{self.version}_{timestamp}.log', level=logging.DEBUG)
+        logging.basicConfig(filename=f'logs/log_out_v_{self.version}_{timestamp}.log', level=logging.DEBUG)
 
         # Create an output directory if it doesn't exist, and create
         
