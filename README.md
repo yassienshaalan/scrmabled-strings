@@ -69,6 +69,7 @@ docker run -p 80:80 scrmabled-strings
 ```
 After you bring this server up, you can refer to runner.py where it has a sample of how to send a post rest api request to the server with the two input files and recieve the expected output. 
 ## Testing
+I have added test.py where it has unittests to test the main constructs of the solver such as the key class, makekey, file readings and running the solver. 
 
 To run the tests from the docker image
 If you had it installed on your shell then simply
