@@ -4,9 +4,18 @@ characters either in their original form or in their scrambled form. The scrambl
 The scrambled or original form of the dictionary word may appear multiple times but we only count it once since we only need to know whether it shows up at least once.
 For example, if we had the word this in the dictionary, the possible valid words which would be counted are this (original version) and tihs (scrambled version). tsih, siht and other variations are not valid since they do not start with t and end with s. Also, tis, tiss, and this are not scrambled forms, because they are not reorderings of the original set of letters.
 
-## Explanation and Time and space complexity of the solution
+## Input 
+1. a dictionary file, where each line comprises one dictionary word from which the dictionary is created. E.g. “and”, “bath”, etc, but note the dictionary words do not need to be real words.
+2. an input file that contains a list of long strings, each on a newline, that you will need to use to search for your dictionary words. E.g. “btahand”
+
+## Output
+Treating each line of the input file as one search string. For example
+#x: y per input file string, where x is the line number (starting from 1) and y is the number of words from the dictionary that appear (in their original or scrambled form) as substrings of the given string.
+E.g. Case #1: 2
+
+## Code Explanation and Time and space complexity of the solution
 ```
-Please refer to explantion.txt 
+Please refer to Code_Explanation.txt 
 ```
 ## Installation
 To use this tool, you must have Python 3 installed.
@@ -69,6 +78,7 @@ docker run -p 80:80 scrmabled-strings
 ```
 After you bring this server up, you can refer to runner.py where it has a sample of how to send a post rest api request to the server with the two input files and recieve the expected output. 
 ## Testing
+I have added test.py where it has unittests to test the main constructs of the solver such as the key class, makekey, file readings and running the solver. 
 
 To run the tests from the docker image
 If you had it installed on your shell then simply
