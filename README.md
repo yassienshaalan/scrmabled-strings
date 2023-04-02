@@ -15,7 +15,7 @@ E.g. Case #1: 2
 
 ## Code Explanation and Time and space complexity of the solution
 ```
-Please refer to explantion.txt 
+Please refer to Code_Explanation.txt 
 ```
 ## Installation
 To use this tool, you must have Python 3 installed.
