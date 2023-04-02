@@ -1,11 +1,41 @@
-This code defines a Key class, and two functions make_key() and count_words(). The Key class has attributes first, last, and freq, and two methods, __eq__() and __hash__(). The make_key() function takes a word as input and returns a Key object for that word. The count_words() function takes a list of words (dictionary) and a text as input, and returns the number of words in the dictionary that can be formed using any length consecutive characters in the text, where length is the length of a word in the dictionary.
+This code defines a Key class, and two functions make_key() and count_words(). 
+The Key class has attributes first, last, and freq, and two methods, __eq__() and __hash__(). 
+The make_key() function takes a word as input and returns a Key object for that word. The count_words() 
+function takes a list of words (dictionary) and a text as input, and returns the number of words in the 
+dictionary that can be formed using any length consecutive characters in the text, where length is the 
+length of a word in the dictionary.
 
-The Key class is used to store information about each word in the dictionary, such as the first and last character, and the frequency of each letter in the word. The make_key() function creates a Key object for a given word by iterating over each character in the word and updating the frequency count in the freq attribute of the Key object. The count_words() function iterates over each word in the dictionary, creates a Key object for the word using the make_key() function, and stores the Key object in a dictionary called groups along with a count of how many times that Key object appears in the dictionary.
+The Key class is used to store information about each word in the dictionary, such as the first and last 
+character, and the frequency of each letter in the word. The make_key() function creates a Key object 
+for a given word by iterating over each character in the word and updating the frequency count in the 
+freq attribute of the Key object. The count_words() function iterates over each word in the dictionary,
+ creates a Key object for the word using the make_key() function, and stores the Key object in a 
+ dictionary called groups along with a count of how many times that Key object appears in the dictionary.
 
-The count_words() function then iterates over each unique word length in the dictionary, and for each length, it creates a new Key object with empty first and last characters and a frequency list, and iterates over the text to find all length consecutive characters. For each consecutive set of length characters, it updates the first and last attributes of the Key object, as well as the frequency count of each letter in the freq attribute. It then checks if the Key object exists in the groups dictionary, and if so, increments the answer variable by the count of that Key object and removes the Key object from the groups dictionary. Finally, it returns the answer variable, which represents the total number of words in the dictionary that can be formed using consecutive characters in the text.
+The count_words() function then iterates over each unique word length in the dictionary, and for 
+each length, it creates a new Key object with empty first and last characters and a frequency list, 
+and iterates over the text to find all length consecutive characters. For each consecutive set of 
+length characters, it updates the first and last attributes of the Key object, as well as the 
+frequency count of each letter in the freq attribute. It then checks if the Key object exists in 
+the groups dictionary, and if so, increments the answer variable by the count of that Key object 
+and removes the Key object from the groups dictionary. Finally, it returns the answer variable, 
+which represents the total number of words in the dictionary that can be formed using consecutive 
+characters in the text.
 
 
 
-The space complexity of this code is O(N * M), where N is the length of the input text and M is the number of words in the dictionary. This is because the code uses a hash table (implemented as a Python dictionary) to store groups of words that share the same first and last characters, as well as the same frequency distribution of characters. The size of this hash table can be as large as the number of distinct groups of words in the dictionary, which is at most M.
+The space complexity of this code is O(N * M), where N is the length of the input text 
+and M is the number of words in the dictionary. This is because the code uses a hash table 
+(implemented as a Python dictionary) to store groups of words that share the same first and 
+last characters, as well as the same frequency distribution of characters. The size of this 
+hash table can be as large as the number of distinct groups of words in the dictionary, which is at most M.
 
-The time complexity of this code is O(N * M * L), where N is the length of the input text, M is the number of words in the dictionary, and L is the maximum length of a word in the dictionary. The outer loop iterates over the possible word lengths in the text, which can be at most N. For each word length, the code builds a Key object and checks whether it is in the hash table, which takes O(1) expected time on average. If the key is found, the corresponding count is added to the answer and the key is deleted from the hash table. Otherwise, the code simply moves the key window one character to the right and updates the Key object accordingly, which takes O(L) time. Since the maximum length of a word in the dictionary is a constant, the overall time complexity of the algorithm is O(N * M).
+The time complexity of this code is O(N * M * L), where N is the length of the input text,
+ M is the number of words in the dictionary, and L is the maximum length of a word in the 
+ dictionary. The outer loop iterates over the possible word lengths in the text, which can 
+ be at most N. For each word length, the code builds a Key object and checks whether it is 
+ in the hash table, which takes O(1) expected time on average. If the key is found, the 
+ corresponding count is added to the answer and the key is deleted from the hash table. 
+ Otherwise, the code simply moves the key window one character to the right and updates 
+ the Key object accordingly, which takes O(L) time. Since the maximum length of a word in 
+ the dictionary is a constant, the overall time complexity of the algorithm is O(N * M).
